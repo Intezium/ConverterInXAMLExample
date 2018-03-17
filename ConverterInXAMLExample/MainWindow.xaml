@@ -1,12 +1,15 @@
 ﻿<Window x:Class="ConverterInXAMLExample.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ConverterInXAMLExample"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
-    </Grid>
+        Title="Converter in XAML example" Height="250" Width="300">
+    <StackPanel>
+        <StackPanel.Resources>
+            <local:MyConverter x:Key="MyConverter" />
+        </StackPanel.Resources>
+
+        <Button Content="Button one" Height="30" Width="150"  Margin="0,50,0,0"  IsEnabled="{Binding ElementName=Check_Box, Path=IsChecked}"/>
+        <Button Content="Button two" Height="30" Width="150" Margin="10" IsEnabled="{Binding ElementName=Check_Box, Path=IsChecked, Converter={StaticResource MyConverter}}"/>
+        <CheckBox x:Name="Check_Box" Content="Activated one button" Height="15" Width="130" Margin="0,10,0,0" IsChecked="True"/>
+    </StackPanel>
 </Window>
